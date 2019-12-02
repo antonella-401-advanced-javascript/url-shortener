@@ -1,5 +1,6 @@
 require('dotenv').config();
 require('./lib/utils/connect')();
+require('./lib/model/UrlShorten');
 
 const app = require('./lib/app');
 
