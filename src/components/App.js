@@ -33,7 +33,7 @@ export default function App() {
   return (
     <Router>
       <Switch>
-        <PrivateRoute path="/login" component={SignupUser} />
+        <Route path="/login" component={SignupUser} />
       </Switch>
     </Router>
   );

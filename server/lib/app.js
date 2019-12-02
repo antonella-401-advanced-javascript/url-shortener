@@ -4,7 +4,7 @@ const ensureAuth = require('./middleware/ensure-auth');
 
 app.use(require('cors')({
   origin: true,
-  credential: true
+  credentials: true
 }));
 app.use(require('cookie-parser')());
 app.use(express.json());

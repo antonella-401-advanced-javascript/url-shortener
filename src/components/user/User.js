@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { getSessionId } from '../../selectors/sessionSelectors';
 
 const User = ({ buttonText, handleSubmit }) => {
   const sessionId = useSelector(getSessionId);
@@ -12,8 +13,10 @@ const User = ({ buttonText, handleSubmit }) => {
 
   return (
     <form onSubmit={event => handleSubmit(event, username, password)}>
-      <input type="text" value={username} onChange={({ target }) => setUsername(target.value)} />
-      <input type="password" value={password} onChange={({ target }) => setPassword(target.value)} />
+      <label htmlFor="username">Username</label>
+      <input name="username" type="text" value={username} onChange={({ target }) => setUsername(target.value)} />
+      <label htmlFor="password">Password</label>
+      <input name="password" type="password" value={password} onChange={({ target }) => setPassword(target.value)} />
       <button>{buttonText}</button>
     </form>
   );
