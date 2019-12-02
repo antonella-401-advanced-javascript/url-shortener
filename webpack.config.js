@@ -1,13 +1,16 @@
 const HtmlPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
+// eslint-disable-next-line
 module.exports = {
   entry: './src/index.js',
   output: {
-    filename: './bundle.[hash].js'
+    filename: 'bundle.[hash].js',
+    publicPath: '/'
   },
   devServer: {
-    port: 7890
+    port: 7890,
+    historyApiFallback: true
   },
   plugins: [
     new HtmlPlugin({ template: './src/index.html' }),
@@ -16,7 +19,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /.js$/,
+        test: /\.js$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -26,7 +29,7 @@ module.exports = {
         }
       },
       {
-        test: /.css$/,
+        test: /\.css$/,
         use: [
           {
             loader: 'style-loader'
@@ -44,15 +47,17 @@ module.exports = {
             options: {
               sourceMap: true,
               plugins: [
+                require('postcss-import')(),
                 require('autoprefixer')(),
-                require('postcss-nested')()
+                require('postcss-nested')(),
+                require('postcss-simple-vars')()
               ]
             }
           }
         ]
       },
       {
-        test: /.(jpeg|jpg|png|svg)$/,
+        test: /\.(jpeg|jpg|png|svg)$/,
         use: {
           loader: 'url-loader',
           options: { limit: 1000 },
