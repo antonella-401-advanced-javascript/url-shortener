@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const ensureAuth = require('./middleware/ensure-auth');
 
-app.use(require('corse')({
+app.use(require('cors')({
   origin: true,
   credential: true
 }));
